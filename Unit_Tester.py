@@ -32,4 +32,4 @@ def initial_test():
     unit_test(absolute_value(5.23) == 3.12)
     unit_test(absolute_value(-3.12) == 3.12)
 
-initial_test()# The third test of absolute_value(0) == 0 should return false. So should the fourth test of absolute_value(5.23) == 3.12.
+# initial_test() The third test of absolute_value(0) == 0 should return false. So should the fourth test of absolute_value(5.23) == 3.12.
