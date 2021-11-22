@@ -10,12 +10,6 @@ def diag_clash(x1, y1, x2, y2):
     return (distance_y == distance_x)    # On same diagonal if distance_y = distance_x
 
 
-# print("Beginning diag_clash tests: ")
-# unit_test(not diag_clash(5,2,2,0))
-# unit_test(diag_clash(5,2,3,0))
-# unit_test(diag_clash(5,2,4,3))
-# unit_test(diag_clash(5,2,4,1))
-
 def col_clash(positions, col_num):
     """Return True if the queen at column col_num clashes with any queen
     to its left (previous columns) in the list of column placements called positions."""
@@ -23,13 +17,7 @@ def col_clash(positions, col_num):
         if diag_clash(col_num, positions[col_num], column, positions[column]):
             return True
     return False             # No column clashes
-
-
-# print("Beginning column clash tests: ")
-# unit_test(not col_clash([6,4,2,0,5], 4))
-# unit_test(not col_clash([6,4,2,0,5,7,1,3], 7))
-
-# unit_test(col_clash([0,1], 1))    
+  
 
 def check_for_clashes(queen_positions):
     """Determine whether we have any queens clashing on the diagonals of the board with positions of queens represented by queen_positions (index # represents the column, value of each index represents the row).
@@ -39,9 +27,18 @@ def check_for_clashes(queen_positions):
             return True
     return False
 
+def main():
+    import random
+    random_number = random.Random()            
 
-print("Beginning check_for_clashes tests: ")
-unit_test(not check_for_clashes([6,4,2,0,5,7,1,3]))
-unit_test(check_for_clashes([4,6,2,0,5,7,1,3]))
-unit_test(check_for_clashes([0,1,2,3]))
-unit_test(not check_for_clashes([2,0,3,1]))
+    queen_positions = list(range(8))              
+    solutions_found = 1
+    attempts_made = 0
+    while solutions_found <= 100:
+        random_number.shuffle(queen_positions)
+        attempts_made += 1
+        if not check_for_clashes(queen_positions):
+            print("Found solution #{0} on attempt #{1}. The positions are {2}".format(solutions_found, attempts_made, queen_positions))
+            solutions_found += 1
+
+main()
